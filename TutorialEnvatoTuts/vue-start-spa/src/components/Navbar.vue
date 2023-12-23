@@ -31,7 +31,7 @@
 import NavbarLink from './NavbarLink.vue';
 
 export default {
-    inject: ['$pages'],
+    inject: ['$pages', '$bus'],
     components: {
         NavbarLink
     },
@@ -39,6 +39,18 @@ export default {
         this.getThemeSetting();
 
         this.pages = this.$pages.getAllPages();
+
+        this.$bus.$on('page-updated', () => {
+            this.pages = [... this.$pages.getAllPages()];
+        });
+
+        this.$bus.$on('page-create', () => {
+            this.pages = [... this.$pages.getAllPages()];
+        });
+        
+        this.$bus.$on('page-delete', () => {
+            this.pages = [... this.$pages.getAllPages()];
+        });
     },
     computed: {
         publishedPages() {

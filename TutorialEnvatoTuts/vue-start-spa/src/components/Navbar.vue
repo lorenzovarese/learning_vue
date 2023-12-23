@@ -13,7 +13,7 @@
                         <!--Now if we move to the create (that is a different component) the router works properly
                             in case of the same component (i.e. from Home to About) the routing works only after additional work-->
                         <router-link 
-                            to="/create"
+                            to="/pages/create"
                             class="nav-link" 
                             active-class="active"
                             aria-current="page"

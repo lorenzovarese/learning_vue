@@ -4,14 +4,11 @@
             <a class="navbar-brand" href="#">My Vue</a>
             <ul class="navbar-nav">
                 <li v-for="(page, index) in pages" class="nav-item" :key="index">
-                    <!-- v-bind:href=page.url is equal to :href=page.url-->
-                    <a class="nav-link" :class="{ active: activePage === index }" aria-current="page" :href=page.link.url
-                        :title="`This title goes to the ${page.link.text} page`" v-on:click.prevent="navLinkClick(index)">
-                        <!-- v-on:click is equal to @click -->
-                        <!-- v-on:click.prevent prevent the move tho href link-->
-                        <!-- to use string interpolation, we need to use backticks -->
-                        {{ page.link.text }}
-                    </a>
+                    <navbar-link 
+                        :page="page" 
+                        :isActive="activePage === index"
+                        @click.prevent="navLinkClick(index)"
+                    ></navbar-link>
                 </li>
             </ul>
             <form class="d-flex">
@@ -22,7 +19,12 @@
 </template>
 
 <script>
+import NavbarLink from './NavbarLink.vue';
+
 export default {
+    components: {
+        NavbarLink
+    },
     props: ['pages', 'activePage', 'theme', 'navLinkClick'],
     data() {
         return {

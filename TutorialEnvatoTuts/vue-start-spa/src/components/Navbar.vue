@@ -13,11 +13,11 @@
                         <!--Now if we move to the create (that is a different component) the router works properly
                             in case of the same component (i.e. from Home to About) the routing works only after additional work-->
                         <router-link 
-                            to="/pages/create"
+                            to="/pages"
                             class="nav-link" 
                             active-class="active"
                             aria-current="page"
-                        >Create</router-link >
+                        >Pages</router-link >
                     </li>
             </ul>
             <form class="d-flex">
@@ -31,6 +31,7 @@
 import NavbarLink from './NavbarLink.vue';
 
 export default {
+    inject: ['$pages'],
     components: {
         NavbarLink
     },

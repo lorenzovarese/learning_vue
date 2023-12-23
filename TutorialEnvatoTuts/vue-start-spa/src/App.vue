@@ -7,20 +7,26 @@
 
     <!-- v-show generate the element but hides it (css' display none), v-if instead inject the element iff the value is true-->
     <div v-show="false">hide this content</div>
-    <page-viewer 
+    <!-- <page-viewer 
         v-if="pages.length > 0"
         :page="pages[activePage]">
-    </page-viewer>
+    </page-viewer> -->
+
+    <create-page
+        :pageCreated="pageCreated"
+    ></create-page>
 </template>
 
 <script>
 import PageViewer from './components/PageViewer.vue'
 import Navbar from './components/Navbar.vue';
+import CreatePage from './components/CreatePage.vue';
 
 export default {
     components: {
         PageViewer,
-        Navbar
+        Navbar,
+        CreatePage
     },
     created() {
         this.getPages();
@@ -36,6 +42,11 @@ export default {
             const result = await fetch('pages.json');
             const pages = await result.json();
             this.pages = pages;
+        },
+        pageCreated(page) {
+            console.log(page);
+            // this.pages.push(page);
+            // this.activePage = this.pages.length - 1;
         }
     }
 }

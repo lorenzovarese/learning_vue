@@ -9,13 +9,25 @@
 
 <script>
 export default{
+    props: ['index'],
     created(){
         //console.log(this.$route.params);
-        this.page = this.$pages.getSinglePage(this.$route.params.index);
+        
+        this.page = this.$pages.getSinglePage(this.index);
+        //this.page = this.$pages.getSinglePage(this.$route.params.index);
+
+        // this.$watch(() =>  this.$route.params, (newParms, oldParams) => {
+        //     this.page = this.$pages.getSinglePage(newParms.index);
+        // });
     },
     data(){
         return {
             page: null
+        }
+    },
+    watch: {
+        index(newIndex, oldIndex){
+            this.page = this.$pages.getSinglePage(newIndex);
         }
     }
 }

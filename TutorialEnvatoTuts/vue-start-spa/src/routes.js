@@ -7,7 +7,8 @@ const router = createRouter({
     routes: [
         {
             path: '/:index?', // The question mark makes the index parameter optional.
-            component: PageViewer
+            component: PageViewer,
+            props: true
         },
         {
             path: '/create',

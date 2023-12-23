@@ -1,19 +1,18 @@
 <template>
     <navbar 
         :pages="pages" 
-        :active-page="activePage"
-        :nav-link-click="(index) => activePage = index">
+        :active-page="activePage">
     </navbar>
 
     <!-- v-show generate the element but hides it (css' display none), v-if instead inject the element iff the value is true-->
     <div v-show="false">hide this content</div>
-    <!-- <page-viewer 
+    <page-viewer 
         v-if="pages.length > 0"
         :page="pages[activePage]">
-    </page-viewer> -->
+    </page-viewer>
 
     <create-page
-        :pageCreated="pageCreated"
+        @page-created="pageCreated"
     ></create-page>
 </template>
 
@@ -30,6 +29,10 @@ export default {
     },
     created() {
         this.getPages();
+
+        this.$bus.$on('navbarLinkActivated', index => {
+            this.activePage = index;
+        });
     },
     data() {
         return {

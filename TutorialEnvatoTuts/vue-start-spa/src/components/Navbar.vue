@@ -3,13 +3,13 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Vue</a>
             <ul class="navbar-nav">
-                <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
                     <navbar-link 
-                        :page="page" 
+                        v-for="(page, index) in publishedPages" class="nav-item" :key="index"
+                        :page="page"
+                        :index="index"
                         :isActive="activePage === index"
-                        @click.prevent="navLinkClick(index)"
+                        @activated="$emit('activated')"
                     ></navbar-link>
-                </li>
             </ul>
             <form class="d-flex">
                 <button class="btn btn-primary" @click.prevent="changeTheme()">Toggle</button>
@@ -33,7 +33,7 @@ export default {
             return this.pages.filter(page => page.published);
         }
     },
-    props: ['pages', 'activePage', 'navLinkClick'],
+    props: ['pages', 'activePage'],
     data() {
         return {
             theme: 'light'

@@ -45,7 +45,11 @@
 
 <script>
 export default {
-    props: ['pageCreated'],
+    emits: {
+        pageCreated(page){
+            console.log('This is a log after pageCreation')
+        }
+    },
     computed: {
         isFormInvalid() {
             return !this.pageTitle || !this.content || !this.linkText || !this.linkUrl;
@@ -67,7 +71,7 @@ export default {
                 return;
             }
 
-            this.pageCreated({
+            this.$emit('pageCreated', {
                 pageTitle: this.pageTitle,
                 content: this.content,
                 link: {

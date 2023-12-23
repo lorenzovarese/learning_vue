@@ -6,7 +6,7 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes: [
         {
-            path: '/',
+            path: '/:index?', // The question mark makes the index parameter optional.
             component: PageViewer
         },
         {

@@ -8,7 +8,7 @@
             aria-current="page"
         >Create Page</router-link >
     </div>
-    <table class="table table-striped table-hover">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Title</th>
@@ -17,8 +17,10 @@
             </tr>
         </thead>
         <tbody>
+            <!--Add the logic of redirect to edit page then we click on the table row tr-->
             <tr v-for="(page, index) in $pages.getAllPages()"
                 :key="index"
+                @click.prevent="goToPage(index)"
             >
                 <td>{{ page.pageTitle }}</td>
                 <td>{{ page.link.text }}</td>
@@ -31,6 +33,7 @@
 <script setup>
 // After the composition API
 import { reactive, ref, inject } from 'vue';
+import { useRouter } from 'vue-router';
 
 // First option
 // let counter = ref(0); // {value: 0}
@@ -49,6 +52,11 @@ import { reactive, ref, inject } from 'vue';
 // }
 
 const $pages = inject('$pages');
+const router = useRouter();
+
+function goToPage(index) {
+    router.push({path: `/pages/${index}/edit`});
+}
 
 // Before the composition API
 // export default {
@@ -64,3 +72,9 @@ const $pages = inject('$pages');
 //     }
 // }
 </script>
+
+<style scoped>
+.table.table-hover tr:hover {
+    cursor: pointer;
+}
+</style>

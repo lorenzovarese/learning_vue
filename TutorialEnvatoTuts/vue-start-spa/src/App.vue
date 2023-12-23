@@ -4,8 +4,10 @@
         :active-page="activePage">
     </navbar>
 
+    <router-view></router-view>
+
     <!-- v-show generate the element but hides it (css' display none), v-if instead inject the element iff the value is true-->
-    <div v-show="false">hide this content</div>
+    <!-- <div v-show="false">hide this content</div>
     <page-viewer 
         v-if="pages.length > 0"
         :page="pages[activePage]">
@@ -13,7 +15,7 @@
 
     <create-page
         @page-created="pageCreated"
-    ></create-page>
+    ></create-page> -->
 </template>
 
 <script>

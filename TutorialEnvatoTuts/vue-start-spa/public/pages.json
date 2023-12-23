@@ -1,6 +1,6 @@
 [
     {
-        "link": { "text": "Home", "url": "index.html" },
+        "link": { "text": "Home", "url": "" },
         "pageTitle": "Hello, Gigi!",
         "content": "Welcome to the magic world of Vue!",
         "published": true

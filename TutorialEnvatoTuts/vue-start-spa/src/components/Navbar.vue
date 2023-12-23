@@ -10,6 +10,17 @@
                         :isActive="activePage === index"
                         @activated="$emit('activated')"
                     ></navbar-link>
+
+                    <li>
+                        <!--Now if we move to the create (that is a different component) the router works properly
+                            in case of the same component (i.e. from Home to About) the routing works only after additional work-->
+                        <router-link 
+                            to="/create"
+                            class="nav-link" 
+                            aria-current="page">
+                            Create
+                        </router-link >
+                    </li>
             </ul>
             <form class="d-flex">
                 <button class="btn btn-primary" @click.prevent="changeTheme()">Toggle</button>

@@ -25,7 +25,7 @@ export default {
     components: {
         NavbarLink
     },
-    props: ['pages', 'activePage', 'theme', 'navLinkClick'],
+    props: ['pages', 'activePage', 'navLinkClick'],
     data() {
         return {
             theme: 'light'

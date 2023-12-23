@@ -32,7 +32,7 @@
                 </div>
                 <div class="row mb-3">
                     <div for="" class="form-check">
-                        <input type="checkbox" class="form-check-input">
+                        <input type="checkbox" class="form-check-input" v-model="published">
                         <label for="gridCheck1" class="form-check-label">
                             Published
                         </label>
@@ -46,7 +46,7 @@
 <script>
 export default {
     props: ['pageCreated'],
-    computed:{
+    computed: {
         isFormInvalid() {
             return !this.pageTitle || !this.content || !this.linkText || !this.linkUrl;
         }
@@ -56,12 +56,13 @@ export default {
             pageTitle: '',
             content: '',
             linkText: '',
-            linkUrl: ''
+            linkUrl: '.html',
+            published: false
         }
     },
     methods: {
         submitForm() {
-            if(this.isFormInvalid) {
+            if (this.isFormInvalid) {
                 alert('Please fill out all fields');
                 return;
             }
@@ -72,8 +73,30 @@ export default {
                 link: {
                     text: this.linkText,
                     url: this.linkUrl
-                }
+                },
+                published: this.published
             });
+
+            this.clearForm();
+        },
+        clearForm() {
+            this.pageTitle = '';
+            this.content = '';
+            this.linkText = '';
+            this.linkUrl = '.html';
+            this.published = false;
+        }
+    },
+    watch: {
+        pageTitle(newTitle, oldTitle) {
+            if (this.linkText === oldTitle) {
+                this.linkText = newTitle
+            }
+        },
+        linkText(newLinkText, oldLinkText) {
+            if (this.linkUrl === `${oldLinkText}.html`) {
+                this.linkUrl = `${newLinkText}.html`
+            }
         }
     }
 }

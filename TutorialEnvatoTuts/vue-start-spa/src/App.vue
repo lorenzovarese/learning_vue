@@ -44,9 +44,7 @@ export default {
             this.pages = pages;
         },
         pageCreated(page) {
-            console.log(page);
-            // this.pages.push(page);
-            // this.activePage = this.pages.length - 1;
+            this.pages.push(page);
         }
     }
 }
